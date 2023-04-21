@@ -30,40 +30,54 @@ saveBtn.addEventListener('click', () => {
   // get note text from input
   const noteText = noteInput.value;
 
-  // convert Markdown to HTML
+  // convert note text to HTML
   const converter = new showdown.Converter();
-  const html = converter.makeHtml(noteText);
+  const noteHTML = converter.makeHtml(noteText);
 
-  // display HTML in preview area
-  preview.innerHTML = html;
+  // create new note object and add to notes array
+  const newNote = { text: noteText, html: noteHTML };
+  notes.push(newNote);
 
-  // save note to array
-  notes.push(noteText);
-
-  // save notes to local storage
+  // save notes array to local storage
   localStorage.setItem('notes', JSON.stringify(notes));
+
+  // clear note input and preview
+  noteInput.value = '';
+  preview.innerHTML = '';
+
+  // show success message
+  alert('Note saved successfully!');
 });
 
 // load notes from local storage
-if (localStorage.getItem('notes')) {
-  notes = JSON.parse(localStorage.getItem('notes'));
-  notes.forEach(note => {
-    const converter = new showdown.Converter();
-    const html = converter.makeHtml(note);
-    const noteElement = document.createElement('div');
-    noteElement.innerHTML = html;
-    preview.appendChild(noteElement);
-  });
+const storedNotes = localStorage.getItem('notes');
+if (storedNotes) {
+  notes = JSON.parse(storedNotes);
 }
 
-// function to insert Markdown symbol at current cursor position
+// display notes in preview
+displayNotes();
+
+// function to insert markdown symbol at current cursor position in note input
 function insertMarkdownSymbol(symbol) {
-  const start = noteInput.selectionStart;
-  const end = noteInput.selectionEnd;
+  const startPos = noteInput.selectionStart;
+  const endPos = noteInput.selectionEnd;
   const text = noteInput.value;
-  const before = text.substring(0, start);
-  const after = text.substring(end, text.length);
-  noteInput.value = before + symbol + text.substring(start, end) + symbol + after;
-  noteInput.setSelectionRange(start + symbol.length, end + symbol.length);
+  const newText = text.substring(0, startPos) + symbol + text.substring(startPos, endPos) + symbol + text.substring(endPos);
+  noteInput.value = newText;
+  noteInput.setSelectionRange(startPos + symbol.length, endPos + symbol.length);
   noteInput.focus();
+}
+
+// function to display notes in preview
+function displayNotes() {
+  // clear preview
+  preview.innerHTML = '';
+
+  // iterate through notes array and display each note in preview
+  notes.forEach((note) => {
+    const noteElement = document.createElement('div');
+    noteElement.innerHTML = note.html;
+    preview.appendChild(noteElement);
+  });
 }
