@@ -41,23 +41,29 @@ saveBtn.addEventListener('click', () => {
   notes.push(noteText);
 
   // save notes to local storage
-localStorage.setItem('notes', JSON.stringify(notes));
-
-// clear input
-noteInput.value = '';
+  localStorage.setItem('notes', JSON.stringify(notes));
 });
 
-// load notes from local storage on page load
-window.addEventListener('load', () => {
-const storedNotes = JSON.parse(localStorage.getItem('notes'));
-if (storedNotes) {
-notes = storedNotes;
+// load notes from local storage
+if (localStorage.getItem('notes')) {
+  notes = JSON.parse(localStorage.getItem('notes'));
+  notes.forEach(note => {
+    const converter = new showdown.Converter();
+    const html = converter.makeHtml(note);
+    const noteElement = document.createElement('div');
+    noteElement.innerHTML = html;
+    preview.appendChild(noteElement);
+  });
 }
-});
 
-// function to insert Markdown symbols at cursor position
+// function to insert Markdown symbol at current cursor position
 function insertMarkdownSymbol(symbol) {
-const startPos = noteInput.selectionStart;
-const endPos = noteInput.selectionEnd;
-noteInput.value = noteInput.value.slice(0, startPos) + symbol + noteInput.value.slice(startPos, endPos) + symbol + noteInput.value.slice(endPos);
+  const start = noteInput.selectionStart;
+  const end = noteInput.selectionEnd;
+  const text = noteInput.value;
+  const before = text.substring(0, start);
+  const after = text.substring(end, text.length);
+  noteInput.value = before + symbol + text.substring(start, end) + symbol + after;
+  noteInput.setSelectionRange(start + symbol.length, end + symbol.length);
+  noteInput.focus();
 }
