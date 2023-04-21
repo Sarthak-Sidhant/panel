@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="codemirror.css">
+  <script src="codemirror.js"></script>
+  <script src="mode/javascript/javascript.js"></script>
+  <script src="compiler.js"></script>
+</head>
+<body>
+  <textarea id="editor"></textarea>
+  <button id="run">Run</button>
+  <div id="output"></div>
+  <script>
+    var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+      lineNumbers: true,
+      mode: "javascript",
+      theme: "default"
+    });
+
+    var runButton = document.getElementById("run");
+    var outputDiv = document.getElementById("output");
+
+    runButton.onclick = function() {
+      var code = editor.getValue();
+      var output = compile(code);
+      outputDiv.innerText = output;
+    };
+  </script>
+</body>
+</html>
