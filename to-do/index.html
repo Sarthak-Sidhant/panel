@@ -1,34 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>to-do list</title>
-    <link href="style.css" rel="stylesheet" />
-    <link href="script.js" rel="script" />
-</head>
-<body>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Draggable To-Do List</title>
+    <style>
+      .container {
+        display: flex;
+      }
+      .list {
+        flex: 1;
+        border: 1px solid black;
+        margin: 10px;
+        padding: 10px;
+        min-height: 200px;
+      }
+      .list h2 {
+        margin-top: 0;
+      }
+      .item {
+        margin: 10px 0;
+        padding: 10px;
+        border: 1px solid gray;
+        cursor: move;
+      }
+    </style>
+  </head>
+  <body>
     <div class="container">
-        <div class="task-list">
-          <h2>To-Do List</h2>
-          <ul id="to-do">
-            <li draggable="true">Task 1</li>
-            <li draggable="true">Task 2</li>
-            <li draggable="true">Task 3</li>
-          </ul>
-        </div>
-        <div class="task-list">
-          <h2>In Progress</h2>
-          <ul id="in-progress">
-          </ul>
-        </div>
-        <div class="task-list">
-          <h2>Done</h2>
-          <ul id="done">
-          </ul>
-        </div>
+      <div class="list">
+        <h2>To-Do</h2>
+        <ul id="to-do">
+          <li class="item" draggable="true">Task 1</li>
+          <li class="item" draggable="true">Task 2</li>
+          <li class="item" draggable="true">Task 3</li>
+        </ul>
       </div>
-      <!--bro drag-nd-drop dont work-->
-</body>
+      <div class="list">
+        <h2>In Progress</h2>
+        <ul id="in-progress">
+        </ul>
+      </div>
+      <div class="list">
+        <h2>Done</h2>
+        <ul id="done">
+        </ul>
+      </div>
+    </div>
+    <script>
+      const items = document.querySelectorAll('.item');
+      let draggedItem = null;
+
+      for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+
+        item.addEventListener('dragstart', function() {
+          draggedItem = item;
+          setTimeout(function() {
+            item.style.display = 'none';
+          }, 0);
+        });
+
+        item.addEventListener('dragend', function() {
+          setTimeout(function() {
+            draggedItem.style.display = 'block';
+            draggedItem = null;
+          }, 0);
+        });
+      }
+
+      const lists = document.querySelectorAll('.list');
+
+      for (let i = 0; i < lists.length; i++) {
+        const list = lists[i];
+
+        list.addEventListener('dragover', function(e) {
+          e.preventDefault();
+        });
+
+        list.addEventListener('dragenter', function(e) {
+          e.preventDefault();
+          this.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
+        });
+
+        list.addEventListener('dragleave', function() {
+          this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+        });
+
+        list.addEventListener('drop', function(e) {
+          this.append(draggedItem);
+          this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+        });
+      }
+    </script>
+  </body>
 </html>
