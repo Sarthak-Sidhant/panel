@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Notes App</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8">
+  <title>Notes App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
     <h1>Notes App</h1>
-    <textarea id="note-input" placeholder="Type your note here"></textarea>
-    <div class="toolbar">
-      <button id="bold-btn" class="toolbar-btn">B</button>
-      <button id="italic-btn" class="toolbar-btn">I</button>
-      <button id="link-btn" class="toolbar-btn">Link</button>
-      <button id="save-btn" class="toolbar-btn">Save</button>
+    <div class="row">
+      <div class="col">
+        <h2>Input</h2>
+        <textarea id="note-input" placeholder="Enter note text..."></textarea>
+        <div class="toolbar">
+          <button id="bold-btn" title="Bold">B</button>
+          <button id="italic-btn" title="Italic">I</button>
+          <button id="link-btn" title="Link">Link</button>
+          <button id="save-btn" title="Save">Save</button>
+        </div>
+      </div>
+      <div class="col">
+        <h2>Preview</h2>
+        <div id="preview"></div>
+      </div>
     </div>
-    <div id="preview"></div>
-    <script src="showdown.min.js"></script>
-    <script src="app.js"></script>
-  </body>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
+  <script src="app.js"></script>
+</body>
 </html>
