@@ -1,0 +1,48 @@
+h1 {
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 1em;
+  }
+  
+  textarea {
+    width: 100%;
+    height: 300px;
+    font-size: 1.2em;
+    padding: 0.5em;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    border-radius: 0;
+    box-sizing: border-box;
+    margin-bottom: 1em;
+  }
+  
+  .toolbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1em;
+  }
+  
+  .toolbar-btn {
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 0.5em;
+    margin-right: 1em;
+    border: none;
+    border-radius: 4px;
+    background-color: #eee;
+    cursor: pointer;
+  }
+  
+  .toolbar-btn:hover {
+    background-color: #ddd;
+  }
+  
+  #preview {
+    font-size: 1.2em;
+    line-height: 1.5;
+    padding: 1em;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+  }
+  
