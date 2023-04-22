@@ -19,7 +19,7 @@
       // function to get all music files from the "music" folder
       function getMusicFiles() {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'music/', true);
+        xhr.open('GET', 'songs/', true);
         xhr.onload = function () {
           var musicFiles = xhr.responseText.split('\n');
           for (var i = 0; i < musicFiles.length; i++) {
