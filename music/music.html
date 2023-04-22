@@ -1,26 +1,37 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Music</title>
+    <title>My Music Player</title>
   </head>
   <body>
     <h1>My Music Player</h1>
     <audio id="audio-player" controls>
-      <source src="songs\a_classmate_from_a_different_world.mp3" type="audio/mpeg">
-      <source src="songs\Alienated.mp3" type="audio/mpeg">
-      <source src="songs\Blue_Waves.mp3" type="audio/mpeg">
+      <source src="" type="audio/mpeg">
     </audio>
     <br>
     <button onclick="shuffle()">Shuffle</button>
     <button onclick="loop()">Loop</button>
     <script>
       var audioPlayer = document.getElementById("audio-player");
-      var playlist = [
-        "songs\a_classmate_from_a_different_world.mp3",
-        "songs\Alienated.mp3",
-        "songs\Blue_Waves.mp3"
-      ];
+      var playlist = [];
       var currentSongIndex = 0;
+      
+      // function to get all music files from the "music" folder
+      function getMusicFiles() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'music/', true);
+        xhr.onload = function () {
+          var musicFiles = xhr.responseText.split('\n');
+          for (var i = 0; i < musicFiles.length; i++) {
+            if (musicFiles[i].endsWith(".mp3")) {
+              playlist.push("music/" + musicFiles[i]);
+            }
+          }
+          audioPlayer.src = playlist[currentSongIndex];
+          audioPlayer.play();
+        };
+        xhr.send();
+      }
       
       function shuffle() {
         playlist.sort(function() {
@@ -46,8 +57,7 @@
         }
       }
       
-      audioPlayer.src = playlist[currentSongIndex];
-      audioPlayer.play();
+      getMusicFiles();
     </script>
   </body>
 </html>
