@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Music</title>
+  </head>
+  <body>
+    <h1>My Music Player</h1>
+    <audio id="audio-player" controls>
+      <source src="songs\a_classmate_from_a_different_world.mp3" type="audio/mpeg">
+      <source src="songs\Alienated.mp3" type="audio/mpeg">
+      <source src="songs\Blue_Waves.mp3" type="audio/mpeg">
+    </audio>
+    <br>
+    <button onclick="shuffle()">Shuffle</button>
+    <button onclick="loop()">Loop</button>
+    <script>
+      var audioPlayer = document.getElementById("audio-player");
+      var playlist = [
+        "songs\a_classmate_from_a_different_world.mp3",
+        "songs\Alienated.mp3",
+        "songs\Blue_Waves.mp3"
+      ];
+      var currentSongIndex = 0;
+      
+      function shuffle() {
+        playlist.sort(function() {
+          return 0.5 - Math.random();
+        });
+        currentSongIndex = 0;
+        audioPlayer.src = playlist[currentSongIndex];
+        audioPlayer.play();
+      }
+      
+      function loop() {
+        audioPlayer.loop = !audioPlayer.loop;
+      }
+      
+      audioPlayer.onended = function() {
+        currentSongIndex++;
+        if (currentSongIndex == playlist.length) {
+          currentSongIndex = 0;
+          shuffle();
+        } else {
+          audioPlayer.src = playlist[currentSongIndex];
+          audioPlayer.play();
+        }
+      }
+      
+      audioPlayer.src = playlist[currentSongIndex];
+      audioPlayer.play();
+    </script>
+  </body>
+</html>
