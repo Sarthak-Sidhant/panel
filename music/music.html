@@ -24,7 +24,7 @@
           var musicFiles = xhr.responseText.split('\n');
           for (var i = 0; i < musicFiles.length; i++) {
             if (musicFiles[i].endsWith(".mp3")) {
-              playlist.push("music/" + musicFiles[i]);
+              playlist.push("songs/" + musicFiles[i]);
             }
           }
           audioPlayer.src = playlist[currentSongIndex];
