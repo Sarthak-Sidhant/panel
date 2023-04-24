@@ -104,3 +104,56 @@
 		// Attach event listeners to the forms
 		document.getElementById("bookmark-form").addEventListener("submit", handleFormSubmit);
 		document.getElementById("file-upload").addEventListener("change", handleFileUpload);
+		// Function to generate the embed code for a YouTube video
+		function generateEmbedCode(url) {
+			// Get the video ID from the URL
+			var videoID = url.split("?v=")[1];
+			
+			// Create the embed code
+			var embedCode = '<div class="embed-container"><iframe src="https://www.youtube.com/embed/' + videoID + '" frameborder="0" allowfullscreen></iframe></div>';
+			
+			return embedCode;
+		}
+		
+		// Function to handle adding a YouTube video
+		function handleYouTubeVideo(event) {
+			event.preventDefault();
+			
+			// Get the value from the form
+			var url = document.getElementById("youtube-url").value;
+			
+			// Generate the embed code
+			var embedCode = generateEmbedCode(url);
+			
+			// Add the embed code to the list
+			var li = document.createElement("li");
+			li.innerHTML = embedCode;
+			
+			// Create a delete button and append it to the li
+			var deleteBtn = document.createElement("button");
+			deleteBtn.textContent = "Delete";
+			deleteBtn.classList.add("delete-btn");
+			deleteBtn.addEventListener("click", function() {
+				li.parentNode.removeChild(li);
+			});
+			li.appendChild(deleteBtn);
+			
+			// Append the li to the ul
+			document.getElementById("bookmark-list").appendChild(li);
+			
+			// Reset the form
+			document.getElementById("youtube-form").reset();
+		}
+		
+		// Attach event listener to the YouTube form
+		document.getElementById("youtube-form").addEventListener("submit", handleYouTubeVideo);
+	</script>
+	
+	<form id="youtube-form">
+		<label for="youtube-url">YouTube Video URL:</label>
+		<input type="url" id="youtube-url" name="youtube-url" required>
+		
+		<input type="submit" value="Add">
+	</form>
+</body>
+</html>
