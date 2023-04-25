@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Gist Clone</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+</head>
+<body>
+  <div>
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description">
+  </div>
+  <div>
+    <label for="filename">Filename:</label>
+    <input type="text" id="filename" name="filename">
+  </div>
+  <div>
+    <label for="filecontent">File Content:</label>
+    <textarea id="filecontent" name="filecontent"></textarea>
+  </div>
+  <button onclick="saveFile()">Save File</button>
+
+  <script>
+    function saveFile() {
+      var description = document.getElementById("description").value;
+      var filename = document.getElementById("filename").value;
+      var filecontent = document.getElementById("filecontent").value;
+      var blob = new Blob([filecontent], {type: "text/plain;charset=utf-8"});
+      saveAs(blob, filename);
+    }
+
+    function getFileExtension(filename) {
+      return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2).toLowerCase();
+    }
+
+    document.getElementById("filecontent").addEventListener("input", function() {
+      var filecontent = document.getElementById("filecontent").value;
+      var filename = document.getElementById("filename").value;
+      var fileExtension = getFileExtension(filename);
+      var highlightedCode = hljs.highlightAuto(filecontent, [fileExtension]).value;
+      document.getElementById("filecontent").innerHTML = highlightedCode;
+    });
+  </script>
+</body>
+</html>
