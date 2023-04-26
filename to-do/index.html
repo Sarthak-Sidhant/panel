@@ -33,17 +33,17 @@
     <script>
       const items = document.querySelectorAll('.item');
       let draggedItem = null;
-
+    
       for (let i = 0; i < items.length; i++) {
         const item = items[i];
-
+    
         item.addEventListener('dragstart', function() {
           draggedItem = item;
           setTimeout(function() {
             item.style.display = 'none';
           }, 0);
         });
-
+    
         item.addEventListener('dragend', function() {
           setTimeout(function() {
             draggedItem.style.display = 'block';
@@ -51,42 +51,56 @@
           }, 0);
         });
       }
-
+    
       const lists = document.querySelectorAll('.list');
-
+    
       for (let i = 0; i < lists.length; i++) {
         const list = lists[i];
-
+    
         list.addEventListener('dragover', function(e) {
           e.preventDefault();
         });
-
+    
         list.addEventListener('dragenter', function(e) {
           e.preventDefault();
           this.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
         });
-
+    
         list.addEventListener('dragleave', function() {
           this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
         });
-
+    
         list.addEventListener('drop', function(e) {
           this.append(draggedItem);
           this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
         });
       }
-
-      const addTaskButton = document.getElementById('add-task-button');
-      const newTaskInput = document.getElementById('new-task-input');
-
-      addTaskButton.addEventListener('click', function() {
-        const newTask = document.createElement('li');
-        newTask.classList.add('item');
-        newTask.setAttribute('draggable', 'true');
-        newTask.innerText = newTaskInput.value;
-        document.getElementById('to-do').appendChild(newTask);
-        newTaskInput.value = '';
-      });
+    
+      function addItem() {
+        const list = document.getElementById('to-do');
+        const newItem = document.createElement('li');
+        newItem.textContent = prompt("Enter task name:");
+        newItem.className = 'item';
+        newItem.draggable = true;
+        list.appendChild(newItem);
+    
+        // Update draggedItem to the newly created item
+        draggedItem = newItem;
+    
+        newItem.addEventListener('dragstart', function() {
+          setTimeout(function() {
+            newItem.style.display = 'none';
+          }, 0);
+        });
+    
+        newItem.addEventListener('dragend', function() {
+          setTimeout(function() {
+            newItem.style.display = 'block';
+            draggedItem = null;
+          }, 0);
+        });
+      }
     </script>
+    
   </body>
 </html>
