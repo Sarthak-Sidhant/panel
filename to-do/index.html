@@ -13,6 +13,10 @@
           <li class="item" draggable="true">Task 2</li>
           <li class="item" draggable="true">Task 3</li>
         </ul>
+        <div>
+          <input type="text" id="new-task-input" placeholder="Enter a new task">
+          <button id="add-task-button">Add Task</button>
+        </div>
       </div>
       <div class="list">
         <h2>In Progress</h2>
@@ -70,6 +74,18 @@
           this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
         });
       }
+
+      const addTaskButton = document.getElementById('add-task-button');
+      const newTaskInput = document.getElementById('new-task-input');
+
+      addTaskButton.addEventListener('click', function() {
+        const newTask = document.createElement('li');
+        newTask.classList.add('item');
+        newTask.setAttribute('draggable', 'true');
+        newTask.innerText = newTaskInput.value;
+        document.getElementById('to-do').appendChild(newTask);
+        newTaskInput.value = '';
+      });
     </script>
   </body>
 </html>
