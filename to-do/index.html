@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <title>Draggable To-Do List</title>
-    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <div class="container">
@@ -14,10 +13,6 @@
           <li class="item" draggable="true">Task 2</li>
           <li class="item" draggable="true">Task 3</li>
         </ul>
-        <div>
-          <input type="text" id="new-task-input" placeholder="Enter a new task">
-          <button id="add-task-button">Add Task</button>
-        </div>
       </div>
       <div class="list">
         <h2>In Progress</h2>
@@ -30,74 +25,73 @@
         </ul>
       </div>
     </div>
+    <button id="add-button">Add Task</button>
     <script>
       const items = document.querySelectorAll('.item');
-let draggedItem = null;
+      let draggedItem = null;
 
-for (let i = 0; i < items.length; i++) {
-  const item = items[i];
+      for (let i = 0; i < items.length; i++) {
+        const item = items[i];
 
-  addEventListeners(item);
-}
+        addEventListeners(item);
+      }
 
-function addEventListeners(item) {
-  item.addEventListener('dragstart', function() {
-    draggedItem = item;
-    setTimeout(function() {
-      item.style.display = 'none';
-    }, 0);
-  });
+      function addEventListeners(item) {
+        item.addEventListener('dragstart', function() {
+          draggedItem = item;
+          setTimeout(function() {
+            item.style.display = 'none';
+          }, 0);
+        });
 
-  item.addEventListener('dragend', function() {
-    setTimeout(function() {
-      draggedItem.style.display = 'block';
-      draggedItem = null;
-    }, 0);
-  });
-}
+        item.addEventListener('dragend', function() {
+          setTimeout(function() {
+            draggedItem.style.display = 'block';
+            draggedItem = null;
+          }, 0);
+        });
+      }
 
-const lists = document.querySelectorAll('.list');
+      const lists = document.querySelectorAll('.list');
 
-for (let i = 0; i < lists.length; i++) {
-  const list = lists[i];
+      for (let i = 0; i < lists.length; i++) {
+        const list = lists[i];
 
-  list.addEventListener('dragover', function(e) {
-    e.preventDefault();
-  });
+        list.addEventListener('dragover', function(e) {
+          e.preventDefault();
+        });
 
-  list.addEventListener('dragenter', function(e) {
-    e.preventDefault();
-    this.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
-  });
+        list.addEventListener('dragenter', function(e) {
+          e.preventDefault();
+          this.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
+        });
 
-  list.addEventListener('dragleave', function() {
-    this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
-  });
+        list.addEventListener('dragleave', function() {
+          this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+        });
 
-  list.addEventListener('drop', function(e) {
-    if (draggedItem) {
-      this.append(draggedItem);
-      this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
-    }
-  });
-}
+        list.addEventListener('drop', function(e) {
+          if (draggedItem) {
+            this.append(draggedItem);
+            this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+          }
+        });
+      }
 
-const addButton = document.querySelector('#add-button');
+      const addButton = document.querySelector('#add-button');
 
-addButton.addEventListener('click', function() {
-  const taskName = prompt('Enter task name');
-  if (taskName) {
-    const newItem = document.createElement('li');
-    newItem.classList.add('item');
-    newItem.draggable = true;
-    newItem.textContent = taskName;
-    addEventListeners(newItem);
-    const toDoList = document.querySelector('#to-do');
-    toDoList.appendChild(newItem);
-  }
-});
-
+      addButton.addEventListener('click', function() {
+        const taskName = prompt('Enter task name');
+        if (taskName) {
+          const newItem = document.createElement('li');
+          newItem.classList.add('item');
+          newItem.draggable = true;
+          newItem.textContent = taskName;
+          addEventListeners(newItem);
+          const toDoList = document.querySelector('#to-do');
+          toDoList.appendChild(newItem);
+        }
+      });
     </script>
-    
   </body>
 </html>
