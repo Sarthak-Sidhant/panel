@@ -47,6 +47,9 @@ saveBtn.addEventListener('click', () => {
 
   // show success message
   alert('Note saved successfully!');
+
+  // display updated notes
+  displayNotes();
 });
 
 // load notes from local storage
@@ -54,9 +57,6 @@ const storedNotes = localStorage.getItem('notes');
 if (storedNotes) {
   notes = JSON.parse(storedNotes);
 }
-
-// display notes in preview
-displayNotes();
 
 // function to insert markdown symbol at current cursor position in note input
 function insertMarkdownSymbol(symbol) {
@@ -75,9 +75,28 @@ function displayNotes() {
   preview.innerHTML = '';
 
   // iterate through notes array and display each note in preview
-  notes.forEach((note) => {
+  notes.forEach((note, index) => {
     const noteElement = document.createElement('div');
     noteElement.innerHTML = note.html;
+
+    // add remove button to note element
+    const removeBtn = document.createElement('button');
+    removeBtn.innerText = 'Remove';
+    removeBtn.addEventListener('click', () => {
+      // remove note from notes array
+      notes.splice(index, 1);
+
+      // save updated notes array to local storage
+      localStorage.setItem('notes', JSON.stringify(notes));
+
+      // display updated notes
+      displayNotes();
+    });
+
+    noteElement.appendChild(removeBtn);
     preview.appendChild(noteElement);
   });
 }
+
+// display initial notes
+displayNotes();
