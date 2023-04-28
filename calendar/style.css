@@ -1,0 +1,15 @@
+#calendar-container {
+    font-size: 16px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    padding: 20px;
+  }
+  
+  #calendar-body td {
+    padding: 10px;
+  }
+  
+  #calendar-body td.weekend {
+    background-color: #e6e6e6;
+  }
+  
