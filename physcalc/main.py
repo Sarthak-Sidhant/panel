@@ -42,4 +42,19 @@ def convert(value, from_unit, to_unit, quantity):
         # convert to the target unit
         target_value = value_in_mks / factors[to_unit]
         return target_value
+# Example usage:
+distance = convert(10, "m", "km", "distance")  # convert 10 meters to kilometers
+print(distance)  # output: 0.01
+
+velocity = convert(60, "km/h", "m/s", "velocity")  # convert 60 kilometers per hour to meters per second
+print(velocity)  # output: 16.666666666666668
+
+time = convert(2, "h", "min", "time")  # convert 2 hours to minutes
+print(time)  # output: 120
+
+light_speed = convert(1, "m/s", "km/h", "light")  # convert speed of light from meters per second to kilometers per hour
+print(light_speed)  # output: 1079252848.8
+
+density = convert(1000, "kg/m^3", "g/cm^3", "density")  # convert density from kilogram per cubic meter to gram per cubic centimeter
+print(density)  # output: 1.0
 
