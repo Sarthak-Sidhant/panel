@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Physics Calculator</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<h1>Physics Calculator</h1>
+	<div class="calculator">
+		<form>
+			<label for="value">Value:</label>
+			<input type="number" id="value" name="value" required>
+			<label for="from-unit">From:</label>
+			<select id="from-unit" name="from-unit" required>
+				<option value="m">meters (m)</option>
+				<option value="km">kilometers (km)</option>
+				<option value="cm">centimeters (cm)</option>
+				<option value="ft">feet (ft)</option>
+				<option value="in">inches (in)</option>
+				<option value="mi">miles (mi)</option>
+			</select>
+			<label for="to-unit">To:</label>
+			<select id="to-unit" name="to-unit" required>
+				<option value="m">meters (m)</option>
+				<option value="km">kilometers (km)</option>
+				<option value="cm">centimeters (cm)</option>
+				<option value="ft">feet (ft)</option>
+				<option value="in">inches (in)</option>
+				<option value="mi">miles (mi)</option>
+			</select>
+			<label for="quantity">Quantity:</label>
+			<select id="quantity" name="quantity" required>
+				<option value="distance">Distance</option>
+				<option value="time">Time</option>
+				<option value="velocity">Velocity</option>
+				<option value="light">Speed of Light</option>
+				<option value="density">Density</option>
+			</select>
+			<input type="submit" value="Calculate">
+		</form>
+		<div id="result"></div>
+	</div>
+	<script src="script.js"></script>
+</body>
+</html>
