@@ -102,3 +102,21 @@ $("#calendar-button").click(function() {
 	createWindow("calendar.html", "Calendar");
 });
 
+// Helper function to create new windows
+function createWindow(url, title) {
+	// Create a new window
+	var newWindow = $("<div class='window'></div>").appendTo("body");
+	newWindow.load(url, function() {
+		newWindow.attr("id", url.replace(".html", ""));
+		newWindow.find(".title").html(title);
+		newWindow.find(".buttons a.minimize").attr("title", "Minimize " + title);
+		newWindow.find(".buttons a.close").attr("title", "Close " + title);
+		newWindow.find(".buttons a.fullscreen").attr("title", "Fullscreen " + title);
+		// Create a new taskbar button
+		var newTaskbarButton = $("<li></li>").appendTo("#taskbar");
+		newTaskbarButton.html("<a href='#'>" + title + "</a>");
+		newTaskbarButton.attr("data-window-id", newWindow.attr("id"));
+		// Activate the new window
+		newTaskbarButton.click();
+	});
+}
