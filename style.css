@@ -25,3 +25,112 @@ body {
 
 #taskbar li {
 	display:
+    inline-block;
+    margin: 5px;
+    }
+
+#taskbar li a {
+display: block;
+padding: 5px;
+text-decoration: none;
+color: #000;
+}
+
+.window {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: #fff;
+border: 1px solid #a0a0a0;
+border-radius: 5px;
+box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.window .titlebar {
+background-color: #c0c0c0;
+border-bottom: 1px solid #a0a0a0;
+padding: 5px;
+}
+
+.window .titlebar .title {
+font-weight: bold;
+}
+
+.window .titlebar .buttons {
+float: right;
+}
+    
+    .window .titlebar .buttons a {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border: 1px solid #a0a0a0;
+    border-radius: 50%;
+    margin-left: 5px;
+    text-decoration: none;
+    color: #000;
+    }
+    
+    .window .content {
+    padding: 10px;
+    }
+    
+    /* Minimized windows */
+    
+    .window.minimized {
+    display: none;
+    }
+    
+    .window.minimized .titlebar .buttons a.minimize {
+    display: none;
+    }
+    
+    /* Dragging */
+    
+    .dragging {
+    opacity: 0.5;
+    }
+    
+    /* Resizing */
+    
+    .resizing {
+    opacity: 0.5;
+    }
+    
+    /* Fullscreen */
+    
+    .fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    }
+    
+    .fullscreen .content {
+    height: 100%;
+    }
+    
+    /* Z-Index */
+    
+    .window {
+    z-index: 1;
+    }
+    
+    .window.active {
+    z-index: 2;
+    }
+    
+    /* Taskbar button active state */
+    
+    #taskbar li.active a {
+    background-color: #a0a0a0;
+    }
+    
+    #taskbar li.active a:hover {
+    background-color: #c0c0c0;
+    }
