@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Panel Repository</title>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<style>
+		/* Style for the taskbar */
+		#taskbar {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 50px;
+			background-color: #333;
+			color: #fff;
+			padding: 10px;
+		}
+
+		/* Style for the floating windows */
+		.window {
+			position: absolute;
+			top: 50px;
+			left: 50px;
+			width: 400px;
+			height: 300px;
+			background-color: #fff;
+			border: 1px solid #333;
+			padding: 10px;
+		}
+	</style>
+	<script>
+		$( function() {
+			// Make windows draggable
+			$( ".window" ).draggable();
+
+			// Make windows minimizable
+			$( ".window" ).on( "click", ".minimize", function() {
+				$( this ).closest( ".window" ).toggleClass( "minimized" );
+			});
+
+			// Make windows closable
+			$( ".window" ).on( "click", ".close", function() {
+				$( this ).closest( ".window" ).remove();
+			});
+		});
+	</script>
+</head>
+<body>
+	<div id="taskbar">
+		<a href="#compiler">Compiler</a>
+		<a href="#calculator">Calculator</a>
+		<a href="#fitness">Fitness Calculator</a>
+		<a href="#notes">Notes</a>
+		<a href="#todo">Todo</a>
+		<a href="#calendar">Calendar</a>
+	</div>
+
+	<div id="compiler" class="window">
+		<h2>Compiler</h2>
+		<!-- Add your compiler code here -->
+		<button class="minimize">-</button>
+		<button class="close">x</button>
+	</div>
+
+	<div id="calculator" class="window">
+		<h2>Calculator</h2>
+		<!-- Add your calculator code here -->
+		<button class="minimize">-</button>
+		<button class="close">x</button>
+	</div>
+
+	<div id="fitness" class="window">
+		<h2>Fitness Calculator</h2>
+		<!-- Add your fitness calculator code here -->
+		<button class="minimize">-</button>
+		<button class="close
