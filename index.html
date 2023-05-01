@@ -1,79 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<meta charset="UTF-8">
-	<title>My Panel</title>
-	<link rel="stylesheet" href="style.css">
-	<!-- jQuery -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<title>Panel Type Repository</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
 
 	<!-- Taskbar -->
-	<div id="taskbar">
-		<ul>
-			<li><a href="calculator/calculator.html">Calculator</a></li>
-			<li><a href="notes/notes.html">Notes</a></li>
-			<li><a href="todo/todo.html">To-Do List</a></li>
-			<li><a href="calendar/calendar.html">Calendar</a></li>
-		</ul>
-	</div>
-
-	<!-- Windows -->
-	<div class="window" id="calculator">
-		<div class="titlebar">
-			<span class="title">Calculator</span>
-			<span class="buttons">
-				<a href="#" class="minimize">_</a>
-				<a href="#" class="close">X</a>
-			</span>
-		</div>
-		<div class="content">
-			<!-- Calculator content goes here -->
-		</div>
-	</div>
-
-	<div class="window" id="notes">
-		<div class="titlebar">
-			<span class="title">Notes</span>
-			<span class="buttons">
-				<a href="#" class="minimize">_</a>
-				<a href="#" class="close">X</a>
-			</span>
-		</div>
-		<div class="content">
-			<!-- Notes content goes here -->
-		</div>
-	</div>
-
-	<div class="window" id="todo">
-		<div class="titlebar">
-			<span class="title">To-Do List</span>
-			<span class="buttons">
-				<a href="#" class="minimize">_</a>
-				<a href="#" class="close">X</a>
-			</span>
-		</div>
-		<div class="content">
-			<!-- To-Do List content goes here -->
-		</div>
-	</div>
-
-	<div class="window" id="calendar">
-		<div class="titlebar">
-			<span class="title">Calendar</span>
-			<span class="buttons">
-				<a href="#" class="minimize">_</a>
-				<a href="#" class="close">X</a>
-			</span>
-		</div>
-		<div class="content">
-			<!-- Calendar content goes here -->
-		</div>
-	</div>
-
-	<!-- JS -->
-	<script src="script.js"></script>
-
-</body>
-</html>
+	<ul id="taskbar">
+		<li data-window-id="compiler">
+			<a href="#">Compiler</a>
+		</li>
+		<li data-window-id="calculator">
+			<a href="#">Calculator</a>
+		</li>
+		<li data-window-id="fitness-calculator">
+			<a href="#">Fitness Calculator</a>
+		</li>
+		<li data-window-id="notes">
+			<a href="#">Notes</a>
+		</li>
+		<li data-window-id="todo">
+			<a href="#">To-Do List</a>
+		</li>
+		<li data-window-id="calendar">
+			<a href="#">Calendar</a>
+		</li>
+	</ul>
