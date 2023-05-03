@@ -103,3 +103,8 @@ function stopTimer() {
     // Stop the timer and play the alarm sound
     clearInterval(timerId);
     playAlarm();
+    // Enable the timer inputs and the start button
+timerHoursElement.disabled = false;
+timerMinutesElement.disabled = false;
+timerSecondsElement.disabled = false;
+startTimerButton.disabled = false;
