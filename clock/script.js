@@ -108,3 +108,8 @@ timerHoursElement.disabled = false;
 timerMinutesElement.disabled = false;
 timerSecondsElement.disabled = false;
 startTimerButton.disabled = false;
+} else {
+    // Display the remaining time
+    const remainingHours = Math.floor(timerDuration / (1000 * 60 * 60));
+    const remainingMinutes = Math.floor((timerDuration % (1000 * 60 * 60)) / (1000 * 60));
+    const remainingSeconds = Math.floor((timerDuration % (1000 * 60)) / 1000);
