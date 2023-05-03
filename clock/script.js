@@ -183,4 +183,13 @@ let alarmTime = new Date(currentDateTime.getFullYear(), currentDateTime.getMonth
 
 if (alarmTime <= currentDateTime) {
 // If the alarm time is in the past, add one day to the alarm time
-alarmTime.setDate(alarmTime.getDate() +
+alarmTime.setDate(alarmTime.getDate() +1);
+}
+
+// Calculate the time difference between the current time and the alarm time
+const timeDifference = alarmTime - currentDateTime;
+
+// Display the time remaining until the alarm goes off
+const remainingHours = Math.floor(timeDifference / (1000 * 60 * 60));
+const remainingMinutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+const remainingSeconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
