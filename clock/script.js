@@ -95,3 +95,11 @@ function pauseTimer() {
 
 function stopTimer() {
   // Stop the timer and reset
+  function updateTimer() {
+    // Subtract one second from the timer duration
+    timerDuration -= 1000;
+    
+    if (timerDuration <= 0) {
+    // Stop the timer and play the alarm sound
+    clearInterval(timerId);
+    playAlarm();
