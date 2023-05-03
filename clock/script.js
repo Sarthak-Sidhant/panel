@@ -231,3 +231,8 @@ alarmHoursElement.addEventListener('input', validateAlarmInput);
 alarmMinutesElement.addEventListener('input', validateAlarmInput);
 setAlarmButton.addEventListener('click', setAlarm);
 stopAlarmButton.addEventListener('click', stopAlarm);
+// Initialize the clock
+updateClock();
+
+// Update the clock every second
+setInterval(updateClock, 1000);
