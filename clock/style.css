@@ -22,5 +22,111 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin-bottom:
+    margin-bottom: 20px;
+}
+
+.time {
+font-size: 3rem;
+}
+
+.time span {
+padding: 0 10px;
+}
+
+.date {
+font-size: 1.2rem;
+}
+
+.timer,
+.stopwatch,
+.alarms {
+width: 100%;
+margin-top: 20px;
+padding: 20px;
+background-color: #f2f2f2;
+border-radius: 10px;
+}
+
+.timer h2,
+.stopwatch h2,
+.alarms h2 {
+margin-bottom: 10px;
+}
+
+.timer-input,
+.stopwatch-time,
+.alarms-input {
+display: flex;
+justify-content: center;
+margin-bottom: 10px;
+}
+
+.timer-input input,
+.alarms-input input {
+margin: 0 10px;
+padding: 5px;
+border-radius: 5px;
+border: none;
+background-color: #fff;
+}
+
+.timer-buttons,
+.stopwatch-buttons,
+.alarms-buttons {
+display: flex;
+justify-content: center;
+}
+
+.timer-buttons button,
+.stopwatch-buttons button,
+.alarms-buttons button {
+margin: 0 5px;
+padding: 10px 20px;
+border: none;
+border-radius: 5px;
+background-color: #007bff;
+color: #fff;
+cursor: pointer;
+}
+
+.timer-buttons button:hover,
+.stopwatch-buttons button:hover,
+.alarms-buttons button:hover {
+background-color: #0062cc;
+}
+
+.stopwatch-time span {
+padding: 0 5px;
+}
+
+.stopwatch-time span:first-child {
+padding-left: 0;
+}
+
+.stopwatch-time span:last-child {
+padding-right: 0;
+}
+
+.stopwatch-time span:nth-child(4) {
+padding-left: 0;
+}
+
+.stopwatch-time span:nth-child(5) {
+padding-right: 0;
+}
+
+.alarms-input input[type="time"] {
+padding: 5px;
+border-radius: 5px;
+border: none;
+background-color: #fff;
+}
+
+.alarms-buttons button:nth-child(2) {
+background-color: #dc3545;
+}
+
+.alarms-buttons button:nth-child(2):hover {
+background-color: #c82333;
+}
   
