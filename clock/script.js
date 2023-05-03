@@ -118,3 +118,53 @@ timerMinutesElement.value = remainingMinutes.toString().padStart(2, '0');
 timerSecondsElement.value = remainingSeconds.toString().padStart(2, '0');
 }
 }
+// Stopwatch function
+let stopwatchId;
+let stopwatchStartTime;
+let stopwatchElapsedTime = 0;
+
+function startStopwatch() {
+// Start the stopwatch
+stopwatchStartTime = Date.now() - stopwatchElapsedTime;
+stopwatchId = setInterval(updateStopwatch, 10);
+
+// Disable the start button and enable the pause button
+startStopwatchButton.disabled = true;
+pauseStopwatchButton.disabled = false;
+}
+
+function pauseStopwatch() {
+// Pause the stopwatch
+clearInterval(stopwatchId);
+
+// Enable the start button and disable the pause button
+startStopwatchButton.disabled = false;
+pauseStopwatchButton.disabled = true;
+}
+
+function resetStopwatch() {
+// Stop the stopwatch and reset the elapsed time
+clearInterval(stopwatchId);
+stopwatchElapsedTime = 0;
+
+// Reset the stopwatch display
+stopwatchElement.textContent = '00:00:00.000';
+
+// Enable the start button and disable the pause button
+startStopwatchButton.disabled = false;
+pauseStopwatchButton.disabled = true;
+}
+
+function updateStopwatch() {
+// Calculate the elapsed time
+stopwatchElapsedTime = Date.now() - stopwatchStartTime;
+
+// Convert the elapsed time to hours, minutes, seconds, and milliseconds
+const hours = Math.floor(stopwatchElapsedTime / (1000 * 60 * 60));
+const minutes = Math.floor((stopwatchElapsedTime % (1000 * 60 * 60)) / (1000 * 60));
+const seconds = Math.floor((stopwatchElapsedTime % (1000 * 60)) / 1000);
+const milliseconds = Math.floor(stopwatchElapsedTime % 1000);
+
+// Display the elapsed time
+stopwatchElement.textContent = ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(3, '0')};
+}
