@@ -113,3 +113,8 @@ startTimerButton.disabled = false;
     const remainingHours = Math.floor(timerDuration / (1000 * 60 * 60));
     const remainingMinutes = Math.floor((timerDuration % (1000 * 60 * 60)) / (1000 * 60));
     const remainingSeconds = Math.floor((timerDuration % (1000 * 60)) / 1000);
+    timerHoursElement.value = remainingHours.toString().padStart(2, '0');
+timerMinutesElement.value = remainingMinutes.toString().padStart(2, '0');
+timerSecondsElement.value = remainingSeconds.toString().padStart(2, '0');
+}
+}
