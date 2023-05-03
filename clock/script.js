@@ -193,3 +193,41 @@ const timeDifference = alarmTime - currentDateTime;
 const remainingHours = Math.floor(timeDifference / (1000 * 60 * 60));
 const remainingMinutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
 const remainingSeconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+alarmMessageElement.textContent = Alarm set for ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}. Time remaining: ${remainingHours.toString().padStart(2, '0')}:${remainingMinutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')};
+
+// Start the alarm timer
+alarmId = setTimeout(() => {
+playAlarm();
+alarmMessageElement.textContent = '';
+}, timeDifference);
+}
+
+function stopAlarm() {
+// Stop the alarm timer
+clearTimeout(alarmId);
+
+// Reset the alarm message
+alarmMessageElement.textContent = '';
+}
+
+function playAlarm() {
+// Play the alarm sound
+alarmAudio.play();
+}
+
+// Add event listeners to the timer inputs and buttons
+timerHoursElement.addEventListener('input', validateTimerInput);
+timerMinutesElement.addEventListener('input', validateTimerInput);
+timerSecondsElement.addEventListener('input', validateTimerInput);
+startTimerButton.addEventListener('click', startTimer);
+
+// Add event listeners to the stopwatch buttons
+startStopwatchButton.addEventListener('click', startStopwatch);
+pauseStopwatchButton.addEventListener('click', pauseStopwatch);
+resetStopwatchButton.addEventListener('click', resetStopwatch);
+
+// Add event listeners to the alarm inputs and buttons
+alarmHoursElement.addEventListener('input', validateAlarmInput);
+alarmMinutesElement.addEventListener('input', validateAlarmInput);
+setAlarmButton.addEventListener('click', setAlarm);
+stopAlarmButton.addEventListener('click', stopAlarm);
