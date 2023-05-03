@@ -168,3 +168,19 @@ const milliseconds = Math.floor(stopwatchElapsedTime % 1000);
 // Display the elapsed time
 stopwatchElement.textContent = ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(3, '0')};
 }
+// Alarm function
+let alarmId;
+
+function setAlarm() {
+const hours = Number(alarmHoursElement.value);
+const minutes = Number(alarmMinutesElement.value);
+
+// Get the current date and time
+const currentDateTime = new Date();
+
+// Calculate the alarm time
+let alarmTime = new Date(currentDateTime.getFullYear(), currentDateTime.getMonth(), currentDateTime.getDate(), hours, minutes, 0, 0);
+
+if (alarmTime <= currentDateTime) {
+// If the alarm time is in the past, add one day to the alarm time
+alarmTime.setDate(alarmTime.getDate() +
