@@ -30,3 +30,9 @@ const handleDataAvailable = (event) => {
       startButton.disabled = true;
       stopButton.disabled = false;
   
+      videoElement.srcObject = mediaStream;
+    } catch (error) {
+      console.error("Error starting recording", error);
+    }
+  };
+  
