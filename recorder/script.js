@@ -26,3 +26,7 @@ const handleDataAvailable = (event) => {
       mediaRecorder.ondataavailable = handleDataAvailable;
   
       mediaRecorder.start();
+  
+      startButton.disabled = true;
+      stopButton.disabled = false;
+  
