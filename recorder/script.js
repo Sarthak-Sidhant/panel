@@ -19,3 +19,7 @@ const handleDataAvailable = (event) => {
         audio: true,
       });
   
+      mediaRecorder = new MediaRecorder(mediaStream, {
+        mimeType: "video/webm",
+      });
+  
