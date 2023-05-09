@@ -12,4 +12,4 @@ const handleDataAvailable = (event) => {
     }
   };
   
-  
+  const startRecording = async () => {
