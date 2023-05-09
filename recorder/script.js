@@ -23,3 +23,6 @@ const handleDataAvailable = (event) => {
         mimeType: "video/webm",
       });
   
+      mediaRecorder.ondataavailable = handleDataAvailable;
+  
+      mediaRecorder.start();
