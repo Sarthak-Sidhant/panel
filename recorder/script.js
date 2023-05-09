@@ -13,3 +13,9 @@ const handleDataAvailable = (event) => {
   };
   
   const startRecording = async () => {
+    try {
+      mediaStream = await navigator.mediaDevices.getDisplayMedia({
+        video: true,
+        audio: true,
+      });
+  
