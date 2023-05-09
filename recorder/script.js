@@ -36,3 +36,21 @@ const handleDataAvailable = (event) => {
     }
   };
   
+  const stopRecording = () => {
+    mediaRecorder.stop();
+    mediaStream.getTracks().forEach((track) => track.stop());
+  
+    startButton.disabled = false;
+    stopButton.disabled = true;
+  
+    const blob = new Blob(recordedChunks, { type: "video/webm" });
+    const url = URL.createObjectURL(blob);
+  
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "recording.webm";
+    a.click();
+  };
+  
+  startButton.addEventListener("click", startRecording);
+  stopButton.addEventListener("click", stopRecording);
