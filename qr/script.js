@@ -6,7 +6,7 @@ const inputField = document.getElementById('input');
 const qrCodeContainer = document.getElementById('qrcode');
 
 // Function to generate QR code
-function generateQRCode() {
+function generateQR() {
   const inputValue = inputField.value;
   if (inputValue) {
     // Generate QR code with the input value and display it in the container
