@@ -13,7 +13,7 @@ Contributions to Panel are welcomed. Please follow the guidelines below when con
 - All contributions must be made under the same license as the original code.
 
 ## License
-The license for Panel has not been decided yet. Until a license is selected, users should not use the code for any purpose other than contributing to this project.
+This Project is Licensed Under GNU-AGPL-3
 
 ## ETA
 There is no ETA for the release of Panel yet, but we are targeting late May 2023.
