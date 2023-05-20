@@ -10,21 +10,180 @@ const yearElement = document.getElementById('year');
 const timerHoursElement = document.getElementById('timer-hours');
 const timerMinutesElement = document.getElementById('timer-minutes');
 const timerSecondsElement = document.getElementById('timer-seconds');
-const startTimerButton = document.getElementById('start-timer-button');
-const pauseTimerButton = document.getElementById('pause-timer-button');
-const stopTimerButton = document.getElementById('stop-timer-button');
+const startTimerButton = document.getElementById('start-timer');
+const pauseTimerButton = document.getElementById('pause-timer');
+const stopTimerButton = document.getElementById('stop-timer');
 
 // Get the stopwatch elements
 const stopwatchElement = document.getElementById('stopwatch');
-const startStopwatchButton = document.getElementById('start-stopwatch-button');
-const pauseStopwatchButton = document.getElementById('pause-stopwatch-button');
-const resetStopwatchButton = document.getElementById('reset-stopwatch-button');
+const startStopwatchButton = document.getElementById('start-stopwatch');
+const pauseStopwatchButton = document.getElementById('pause-stopwatch');
+const resetStopwatchButton = document.getElementById('reset-stopwatch');
+const stopwatchHoursElement = document.getElementById('sw-hours');
+const stopwatchMinutesElement = document.getElementById('sw-minutes');
+const stopwatchSecondsElement = document.getElementById('sw-seconds');
+const stopwatchMillisecondsElement = document.getElementById('sw-milliseconds');
 
 // Get the alarm elements
 const alarmHoursElement = document.getElementById('alarm-hours');
 const alarmMinutesElement = document.getElementById('alarm-minutes');
 const setAlarmButton = document.getElementById('set-alarm-button');
 const cancelAlarmButton = document.getElementById('cancel-alarm-button');
+
+setInterval(updateTimer, 10);
+setInterval(updateStopwatch, 10);
+
+let timerTotalTime = null 
+let isTimerRunning = false 
+let timerTimeRan = null 
+let timerMs = 0
+
+let isStopwatchRunning = false
+let stopwatchTimeRan = null 
+
+function updateTimer() {
+	if (isTimerRunning) {
+		timerTimeRan += 10
+		if (timerShouldStop()) {
+			stopTimer()
+		}
+		// console.log("Hours: " + timerHoursElement.value)
+		// console.log("Minutes: " + timerMinutesElement.value)
+		// console.log("Seconds: " + timerSecondsElement.value)
+		updateTimerValues(timerTimeRan)
+	}
+}
+
+function updateStopwatch() {
+	if (isStopwatchRunning) {
+		stopwatchTimeRan += 10
+		console.log("stopwatchTimeRan: " + stopwatchTimeRan)
+		updateStopwatchValues(stopwatchTimeRan)
+	}
+}
+
+function updateStopwatchValues(elapsedTimeInMs) {
+	const [hours, minutes, seconds, milliseconds] = getHrMinSecMs(elapsedTimeInMs)
+
+	console.log("Hours: " + hours)
+	console.log("Minutes: " + minutes)
+	console.log("Seconds: " + seconds)
+	console.log("Milliseconds: " + milliseconds)
+	console.log("Is disabled: " + stopwatchMillisecondsElement.disabled)
+	stopwatchHoursElement.value   = hours.toString().padStart(2, '0')
+	stopwatchMinutesElement.value = minutes.toString().padStart(2, '0')
+	stopwatchSecondsElement.value = seconds.toString().padStart(2, '0')
+	stopwatchMillisecondsElement.value = milliseconds.toString().padStart(3, '0')
+}
+
+let startStopwatch = function() {
+	if (stopwatchTimeRan === null) {
+		stopwatchTimeRan = 0
+	}
+	isStopwatchRunning = true
+	setStopwatchToDisabled()
+}
+
+let pauseStopwatch = function() {
+	isStopwatchRunning = false
+	setStopwatchToEnabled()
+}
+
+let resetStopwatch = function() {
+	isStopwatchRunning = false
+	stopwatchTimeRan = 0
+	setStopwatchToEnabled()
+}
+
+function updateTimerValues(elapsedTimeInMs) {
+	timerTimeLeft = timerTotalTime - elapsedTimeInMs
+	const [hours, minutes, seconds, milliseconds] = getHrMinSecMs(timerTimeLeft)
+
+	timerHoursElement.value   = Number(hours).toString().padStart(2, '0')
+	timerMinutesElement.value = Number(minutes).toString().padStart(2, '0')
+	timerSecondsElement.value = Number(seconds).toString().padStart(2, '0')
+	timerMs = Number(milliseconds)
+}
+
+function startTimer() {
+	if (timerTimeRan === null) {
+		timerTimeRan = 0
+	}
+	timerTotalTime = getMsFromHoursMinSecMs(getTimerValues()[0], getTimerValues()[1], getTimerValues()[2], timerMs)
+	isTimerRunning = true
+  setTimerToDisabled()
+}
+
+function pauseTimer() {
+	isTimerRunning = false
+	setTimerToEnabled()
+}
+
+function stopTimer() {
+	isTimerRunning = false
+	timerTimeRan = totalTimerTime
+	setTimerToEnabled()
+}
+
+/* 
+Misc utility things 
+*/
+
+function getHrMinSecMs(elapsedTime) {
+	return [
+		Math.floor((elapsedTime / (1000 * 60 * 60)) % 24),
+		Math.floor((elapsedTime / (1000 * 60)) % 60),
+		Math.floor((elapsedTime / 1000) % 60),
+		Math.floor(elapsedTime % 1000)
+	]
+}
+
+function getMsFromHoursMinSecMs(hours, minutes, seconds, milliseconds) {
+	return (hours * 60 * 60 * 1000) + (minutes * 60 * 1000) + (seconds * 1000) + milliseconds
+}
+
+function timerShouldStop() {
+	return timerTimeRan >= timerTotalTime
+}
+
+function setTimerToDisabled() {
+	timerHoursElement.disabled = true
+	timerMinutesElement.disabled = true
+	timerSecondsElement.disabled = true
+}
+
+function setTimerToEnabled() {
+	timerHoursElement.disabled = false
+	timerMinutesElement.disabled = false
+	timerSecondsElement.disabled = false
+}
+
+function setStopwatchToDisabled() {
+	stopwatchHoursElement.disabled = true
+	stopwatchMinutesElement.disabled = true
+	stopwatchSecondsElement.disabled = true
+	stopwatchMillisecondsElement.disabled = true
+}
+
+function setStopwatchToEnabled() {
+	stopwatchHoursElement.disabled = false
+	stopwatchMinutesElement.disabled = false
+	stopwatchSecondsElement.disabled = false
+	stopwatchMillisecondsElement.disabled = false
+}
+
+function getTimerValues() {
+	return [
+		timerHoursElement.value,
+		timerMinutesElement.value,
+		timerSecondsElement.value,
+		timerMs
+	]
+}
+
+/*
+
+*/
 
 // Display the current date and time
 displayDateTime();
@@ -33,18 +192,15 @@ displayDateTime();
 setInterval(displayDateTime, 1000);
 
 // Set up the timer event listeners
-startTimerButton.addEventListener('click', startTimer);
-pauseTimerButton.addEventListener('click', pauseTimer);
-stopTimerButton.addEventListener('click', stopTimer);
+// startTimerButton.addEventListener('click', startTimer);
+// pauseTimerButton.addEventListener('click', pauseTimer);
+// stopTimerButton.addEventListener('click', stopTimer);
 
-// Set up the stopwatch event listeners
-startStopwatchButton.addEventListener('click', startStopwatch);
-pauseStopwatchButton.addEventListener('click', pauseStopwatch);
-resetStopwatchButton.addEventListener('click', resetStopwatch);
+// // Set up the alarm event listeners
+// setAlarmButton.addEventListener('click', setAlarm);
+// cancelAlarmButton.addEventListener('click', cancelAlarm);
 
-// Set up the alarm event listeners
-setAlarmButton.addEventListener('click', setAlarm);
-cancelAlarmButton.addEventListener('click', cancelAlarm);
+
 
 // Clock and date functions
 function displayDateTime() {
@@ -62,164 +218,72 @@ function displayDateTime() {
   yearElement.textContent = currentDateTime.getFullYear();
 }
 
-// Timer function
-let timerId;
-let timerDuration;
 
-function startTimer() {
-  const hours = Number(timerHoursElement.value);
-  const minutes = Number(timerMinutesElement.value);
-  const seconds = Number(timerSecondsElement.value);
 
-  // Calculate the timer duration in milliseconds
-  timerDuration = ((hours * 60 * 60) + (minutes * 60) + seconds) * 1000;
 
-  // Start the timer
-  timerId = setInterval(updateTimer, 1000);
 
-  // Disable the timer inputs and the start button
-  timerHoursElement.disabled = true;
-  timerMinutesElement.disabled = true;
-  timerSecondsElement.disabled = true;
-  startTimerButton.disabled = true;
-}
 
-function pauseTimer() {
-  // Pause the timer
-  clearInterval(timerId);
 
-  // Enable the stop button and disable the pause button
-  stopTimerButton.disabled = false;
-  pauseTimerButton.disabled = true;
-}
 
-function stopTimer() {
-  // Stop the timer and reset
-  function updateTimer() {
-    // Subtract one second from the timer duration
-    timerDuration -= 1000;
-    
-    if (timerDuration <= 0) {
-    // Stop the timer and play the alarm sound
-    clearInterval(timerId);
-    playAlarm();
-    // Enable the timer inputs and the start button
-timerHoursElement.disabled = false;
-timerMinutesElement.disabled = false;
-timerSecondsElement.disabled = false;
-startTimerButton.disabled = false;
-} else {
-    // Display the remaining time
-    const remainingHours = Math.floor(timerDuration / (1000 * 60 * 60));
-    const remainingMinutes = Math.floor((timerDuration % (1000 * 60 * 60)) / (1000 * 60));
-    const remainingSeconds = Math.floor((timerDuration % (1000 * 60)) / 1000);
-    timerHoursElement.value = remainingHours.toString().padStart(2, '0');
-timerMinutesElement.value = remainingMinutes.toString().padStart(2, '0');
-timerSecondsElement.value = remainingSeconds.toString().padStart(2, '0');
-}
-}
-// Stopwatch function
-let stopwatchId;
-let stopwatchStartTime;
-let stopwatchElapsedTime = 0;
 
-function startStopwatch() {
-// Start the stopwatch
-stopwatchStartTime = Date.now() - stopwatchElapsedTime;
-stopwatchId = setInterval(updateStopwatch, 10);
-
-// Disable the start button and enable the pause button
-startStopwatchButton.disabled = true;
-pauseStopwatchButton.disabled = false;
-}
-
-function pauseStopwatch() {
-// Pause the stopwatch
-clearInterval(stopwatchId);
-
-// Enable the start button and disable the pause button
-startStopwatchButton.disabled = false;
-pauseStopwatchButton.disabled = true;
-}
-
-function resetStopwatch() {
-// Stop the stopwatch and reset the elapsed time
-clearInterval(stopwatchId);
-stopwatchElapsedTime = 0;
-
-// Reset the stopwatch display
-stopwatchElement.textContent = '00:00:00.000';
-
-// Enable the start button and disable the pause button
-startStopwatchButton.disabled = false;
-pauseStopwatchButton.disabled = true;
-}
-
-function updateStopwatch() {
-// Calculate the elapsed time
-stopwatchElapsedTime = Date.now() - stopwatchStartTime;
-
-// Convert the elapsed time to hours, minutes, seconds, and milliseconds
-const hours = Math.floor(stopwatchElapsedTime / (1000 * 60 * 60));
-const minutes = Math.floor((stopwatchElapsedTime % (1000 * 60 * 60)) / (1000 * 60));
-const seconds = Math.floor((stopwatchElapsedTime % (1000 * 60)) / 1000);
-const milliseconds = Math.floor(stopwatchElapsedTime % 1000);
-
-// Display the elapsed time
-stopwatchElement.textContent = ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(3, '0')};
-}
 // Alarm function
 let alarmId;
 
 function setAlarm() {
-const hours = Number(alarmHoursElement.value);
-const minutes = Number(alarmMinutesElement.value);
+  const hours = Number(alarmHoursElement.value);
+  const minutes = Number(alarmMinutesElement.value);
 
-// Get the current date and time
-const currentDateTime = new Date();
+  // Get the current date and time
+  const currentDateTime = new Date();
 
-// Calculate the alarm time
-let alarmTime = new Date(currentDateTime.getFullYear(), currentDateTime.getMonth(), currentDateTime.getDate(), hours, minutes, 0, 0);
+  // Calculate the alarm time
+  let alarmTime = new Date(currentDateTime.getFullYear(), currentDateTime.getMonth(), currentDateTime.getDate(), hours, minutes, 0, 0);
 
-if (alarmTime <= currentDateTime) {
-// If the alarm time is in the past, add one day to the alarm time
-alarmTime.setDate(alarmTime.getDate() +1);
-}
+  if (alarmTime <= currentDateTime) {
+    // If the alarm time is in the past, add one day to the alarm time
+    alarmTime.setDate(alarmTime.getDate() + 1);
+  }
 
-// Calculate the time difference between the current time and the alarm time
-const timeDifference = alarmTime - currentDateTime;
+  // Calculate the time difference between the current time and the alarm time
+  const timeDifference = alarmTime - currentDateTime;
 
-// Display the time remaining until the alarm goes off
-const remainingHours = Math.floor(timeDifference / (1000 * 60 * 60));
-const remainingMinutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-const remainingSeconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-alarmMessageElement.textContent = Alarm set for ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}. Time remaining: ${remainingHours.toString().padStart(2, '0')}:${remainingMinutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')};
+  // Display the time remaining until the alarm goes off
+  const remainingHours = Math.floor(timeDifference / (1000 * 60 * 60));
+  const remainingMinutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+  const remainingSeconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+  alarmMessageElement.textContent = "Alarm set for ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}. Time remaining: ${remainingHours.toString().padStart(2, '0')}:${remainingMinutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')"
+};
 
+// What is this code for?
+/*
 // Start the alarm timer
 alarmId = setTimeout(() => {
-playAlarm();
-alarmMessageElement.textContent = '';
+  playAlarm();
+  alarmMessageElement.textContent = '';
 }, timeDifference);
-}
+*/
 
 function stopAlarm() {
-// Stop the alarm timer
-clearTimeout(alarmId);
+  // Stop the alarm timer
+  clearTimeout(alarmId);
 
-// Reset the alarm message
-alarmMessageElement.textContent = '';
+  // Reset the alarm message
+  alarmMessageElement.textContent = '';
 }
 
 function playAlarm() {
-// Play the alarm sound
-alarmAudio.play();
+  // Play the alarm sound
+	// TODO: `alarmAudio` is not defined
+  // alarmAudio.play();
 }
 
 // Add event listeners to the timer inputs and buttons
-timerHoursElement.addEventListener('input', validateTimerInput);
-timerMinutesElement.addEventListener('input', validateTimerInput);
-timerSecondsElement.addEventListener('input', validateTimerInput);
+// timerHoursElement.addEventListener('input', validateTimerInput);
+// timerMinutesElement.addEventListener('input', validateTimerInput);
+// timerSecondsElement.addEventListener('input', validateTimerInput);
 startTimerButton.addEventListener('click', startTimer);
+pauseTimerButton.addEventListener('click', pauseTimer);
+stopTimerButton.addEventListener('click', stopTimer);
 
 // Add event listeners to the stopwatch buttons
 startStopwatchButton.addEventListener('click', startStopwatch);
@@ -227,12 +291,13 @@ pauseStopwatchButton.addEventListener('click', pauseStopwatch);
 resetStopwatchButton.addEventListener('click', resetStopwatch);
 
 // Add event listeners to the alarm inputs and buttons
-alarmHoursElement.addEventListener('input', validateAlarmInput);
-alarmMinutesElement.addEventListener('input', validateAlarmInput);
-setAlarmButton.addEventListener('click', setAlarm);
-stopAlarmButton.addEventListener('click', stopAlarm);
+//alarmHoursElement.addEventListener('input', validateAlarmInput);
+//alarmMinutesElement.addEventListener('input', validateAlarmInput);
+//setAlarmButton.addEventListener('click', setAlarm);
+//stopAlarmButton.addEventListener('click', stopAlarm);
+
 // Initialize the clock
-updateClock();
+updateTimer();
 
 // Update the clock every second
-setInterval(updateClock, 1000);
+setInterval(updateTimer, 1000);
