@@ -16,6 +16,7 @@ Contributions to Panel are welcomed. Please follow the guidelines below when con
 ## Installation & User Guide
 The Project is Still Under Development, And Most of The Uses Mentioned Here are Not Implemented. They Will be updated as The Project Progresses. It is not currently suitable for Normal Day-to-Day Use.
 
+-------------------------------------
 ### Panel Installation and User Guide
 -------------------------------------
 
