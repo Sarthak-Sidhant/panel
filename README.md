@@ -34,8 +34,6 @@ To install the Panel project, follow these steps:
 
     -   Run the following command to clone the repository:
 
-        bashCopy code
-
         `git clone https://github.com/Sarthak-Sidhant/panel.git`
 
 2.  Open the Panel:
