@@ -46,7 +46,22 @@
   }
   
   #qrcode {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #1fd655;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  
+  .download-button {
     margin-top: 20px;
+  }
+  
+  .enlarge-button,
+  .svg-button {
+    margin-left: 10px;
   }
   
   /* Dark mode styles */
