@@ -17,8 +17,8 @@ body {
     margin: 50px auto;
     max-width: 500px;
     padding: 20px;
-    border: 1px solid #1fd655;
-    border-radius: 5px;
+    border: 3px solid #1fd655;
+    border-radius: 10px;
     background-color: #232323;
   }
   
@@ -52,7 +52,7 @@ body {
   label.upload-btn {
     display: block;
     background-color: transparent;
-    color: white;
+    color: goldenrod;
     padding: 10px 20px;
     border: solid 1px goldenrod;
     border-radius: 5px;
@@ -63,7 +63,9 @@ body {
   }
   
   label.upload-btn:hover {
-    background-color: #1da64e;
+    background-color: goldenrod;
+    color:#fefefe;
+    transition: 0.4s;
   }
   
   ul {
