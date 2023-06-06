@@ -11,7 +11,7 @@ Contributions to Panel are welcomed. Please follow the guidelines below when con
 - Make your changes and test them thoroughly.
 - Create a pull request to merge your changes into the main branch.
 - All contributions must be made under the same license as the original code.
-- After Contributing, Kindly get in touch w/me Discord: (Sarthak Sidhant#4374)
+- After Contributing, Kindly get in touch w/me through Email: info@sarthaksidhant.me or sarthaksidhantisopolice@gmail.com
 
 ## Installation & User Guide
 The Project is Still Under Development, And Most of The Uses Mentioned Here are Not Implemented. They Will be updated as The Project Progresses. It is not currently suitable for Normal Day-to-Day Use.
@@ -103,7 +103,7 @@ Permissions of this strongest copyleft license are conditioned on making availab
 There is no ETA for the release of Panel yet, but we are targeting late May 2023.
 
 ## Contact
-If you have any questions or comments about Panel, feel free to contact Sarthak Sidhant#4374 on Discord.
+If you have any questions or comments about Panel, feel free to contact Me On Mail -> sarthaksidhantisopolice@gmail.com
 
 ## Support 
 Thanks for MEI232#0001 for helping us out. He's a true Chad.
