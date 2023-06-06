@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Ultimate Fitness Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>The Ultimate Fitness Calculator</h1>
+    <div class="form">
+      <label for="choice">Choose a number:</label>
+      <select id="choice" name="choice">
+        <option value="1">BMI</option>
+        <option value="2">BMR</option>
+        <option value="3">TDEE</option>
+        <option value="4">Calories Needed to Lose Weight</option>
+        <option value="5">Calories Needed to Gain Weight</option>
+        <option value="6">Calories Needed to Maintain Weight</option>
+        <option value="7">Calculate Everything</option>
+      </select>
+      <div id="input-fields"></div>
+      <button id="calculate-btn">Calculate</button>
+    </div>
+    <div id="result" class="result"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
