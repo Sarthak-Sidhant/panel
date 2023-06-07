@@ -100,7 +100,7 @@ GNU Affero General Public License v3.0
 Permissions of this strongest copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights. When a modified version is used to provide a service over a network, the complete source code of the modified version must be made available.
 
 ## ETA
-There is no ETA for the release of Panel yet, but we are targeting late ~~May 2023~~ <sub>(We Couldn't Complete it in Time)</sub> June 2023.
+There is no ETA for the release of Panel yet, but we are targeting late ~~May 2023~~ <sub>(We Couldn't Complete it in Time)</sub>.
 
 ## Contact
 If you have any questions or comments about Panel, feel free to contact Me On Mail -> sarthaksidhantisopolice@gmail.com
