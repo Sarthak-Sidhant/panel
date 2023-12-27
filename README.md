@@ -1,10 +1,4 @@
-### ______    ___     _   _    _____    _     
-### | ___ \  / _ \   | \ | |  |  ___|  | |    
-### | |_/ / / /_\ \  |  \| |  | |__    | |    
-### |  __/  |  _  |  | . ` |  |  __|   | |    
-### | |     | | | |  | |\  |  | |___   | |____
-### \_|     \_| |_/  \_| \_/  \____/   \_____/
-
+#PANEL
 
 PANEL is a multipurpose panel tool that imitates a remote desktop portal, allowing users to access various tools from anywhere. The panel features a music player, todo list, note-taking tool, Fitcal-dev, browser-based compiler, and many more tools.
 
@@ -113,3 +107,10 @@ If you have any questions or comments about Panel, feel free to contact Me On Ma
 
 ## Support 
 Thanks for MEI232#0001 for helping us out. He's a true Chad.
+
+### ______    ___     _   _    _____    _     
+### | ___ \  / _ \   | \ | |  |  ___|  | |    
+### | |_/ / / /_\ \  |  \| |  | |__    | |    
+### |  __/  |  _  |  | . ` |  |  __|   | |    
+### | |     | | | |  | |\  |  | |___   | |____
+### \_|     \_| |_/  \_| \_/  \____/   \_____/
