@@ -1,4 +1,4 @@
-#PANEL
+# PANEL
 
 PANEL is a multipurpose panel tool that imitates a remote desktop portal, allowing users to access various tools from anywhere. The panel features a music player, todo list, note-taking tool, Fitcal-dev, browser-based compiler, and many more tools.
 
